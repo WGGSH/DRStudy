@@ -3,6 +3,7 @@
 
 class DR {
 private:
+	// Interface
 	IKinectSensor * pSensor;
 	IColorFrameSource* pColorFrameSource;
 	IColorFrameReader* pColorFrameReader;
@@ -10,15 +11,17 @@ private:
 	IDepthFrameSource* pDepthFrameSource;
 	IDepthFrameReader* pDepthFrameReader;
 	IDepthFrame* pDepthFrame;
-	ICoordinateMapper* pMapper;
+	ICoordinateMapper* pCoodinateMapper;
 
 
-	int imageWidth;
-	int imageHeight;
+	// Color
+	int colorWidth;
+	int colorHeight;
 	unsigned int bufferSize;
 	cv::Mat bufferMat;
 	cv::Mat colorMat;
 
+	// Depth
 	int depthWidth;
 	int depthHeight;
 	unsigned int depthBufferSize;
@@ -38,6 +41,13 @@ private:
 			pInterfaceToRelease = nullptr;
 		}
 	}
+
+	void sensorInitialize();
+	void colorInitialize();
+	void depthInitialize();
+
+	void drawColor();
+	void drawDepth();
 
 	void initialize();
 public:
